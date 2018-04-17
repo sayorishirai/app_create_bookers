@@ -1,18 +1,58 @@
-<table class="show-table">
-  <tbody>
-    <tr>
-      <td class="fw-b">Title:</td>
-      <td><%= @booker.title %></td>
-    </tr>
-    <tr>
-      <td class="fw-b">Body:</td>
-      <td><%= @booker.body %></td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<div class="ml20">
-	<%= link_to "Edit", edit_booker_path(@booker) %>
-	|
-	<%= link_to "Back", bookers_path(@booker) %>
+<div class='body'>
+      <div class='container'>
+        <div class='row'>
+  <div class='col-xs-3'>
+    <h2>User info</h2>
+    <table class='table'>
+      <tr>
+      <%= attachment_image_tag current_user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
+      </tr>
+      <tr>
+        <th>name</th>
+        <th><%= current_user.name %></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><%= current_user.introduction %></th>
+      </tr>
+    </table>
+    <div class='row'>
+      <%= link_to "Edit", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+    </div>
+    <h2>New book</h2>
+  <%= form_for(@booker) do |f| %>
+  <div class="field row">
+    <label for="book_title">Title</label><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field row">
+    <label for="book_opinion">Opinion</label><br>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions row">
+    <input type="submit" name="commit" value="Create Book" class="btn btn-primary col-xs-12" data-disable-with="Create Book" />
+  </div>
+<% end %>
+  </div>
+
+  <div class='col-xs-9'>
+    <h2>Book detail</h2>
+    <table class='table'>
+      <% @bookers.each do |booker| %>
+      <tr>
+        <td><%= attachment_image_tag current_user, :image, :fill, format: 'jpeg' %><br>
+        </td>
+        <td><%= booker.title %></td>
+        <td><%= booker.body %></td>
+        <td><%= link_to 'Edit', edit_booker_path, class: "btn-sm btn-success" %></td>
+        <td><%= link_to "Destroy", booker_path, method: :delete, class: "btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
 </div>
+      </div>
+    </div>

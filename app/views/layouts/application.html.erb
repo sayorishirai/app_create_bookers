@@ -1,14 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bookers</title>
-    <%= csrf_meta_tags %>
+<head>
+	<title>Bookers</title>
+	<%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+	
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <span class="glyphicon glyphicon-book" aria-hidden="true" style="font-size:20px;">Bookers</span>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav navbar-right">
+	      	<% if user_signed_in? %>
+	      	<li><%= link_to " Home", user_path(current_user), class: "navbar-brand glyphicon glyphicon-home" %></li>
+	      	<li>
+	      	<%= link_to " Users", users_path, class: "navbar-brand glyphicon glyphicon-user" %></li>
+	      	<li>
+	      	<%= link_to " Books", bookers_path, class: "navbar-brand glyphicon glyphicon-book" %></li>
+	        <li>
+	        <%= link_to " logout", destroy_user_session_path, class: "navbar-brand glyphicon glyphicon-log-out", method: :delete %></li>
+	        <% else %>
+	        <li><%= link_to " Home", root_path, class: "navbar-brand glyphicon glyphicon-home" %></li>
+	        <li>
+	        <%= link_to " About", '/top/about', class: "navbar-brand glyphicon glyphicon-link" %></li>
+	      	<li>
+	      	<%= link_to " sign up", new_user_registration_path, class: "navbar-brand glyphicon glyphicon-edit" %></li>
+	        <li>
+	        <%= link_to " login", new_user_session_path, class: "navbar-brand glyphicon glyphicon-log-in" %></li>
+	        <% end %>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	<%= yield %>
+
+	<footer>
+	  <div class='container'>
+	  	<div class='row'>
+	    	<div class='col-xs-3 col-xs-offset-9'>
+	    		<p>CopyRight Infratop.inc</p>
+	    	</div>
+	    </div>
+	  </div>
+	</footer>
+</body>
 </html>
