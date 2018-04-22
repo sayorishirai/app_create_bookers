@@ -6,7 +6,7 @@
 
     <div class="field">
       <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, id:"inputName" %>
+      <%= f.text_field :name, autofocus: true, id: "inputName" %>
     </div>
 
     <div class="field">
@@ -25,10 +25,11 @@
     <div class="field">
       <%= f.label :password_confirmation %><br />
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
+    </div><br />
 
       <%= f.submit "Sign up", class: "btn btn-success" %>
   <% end %>
+  <br />
 
   <%= render "devise/shared/links" %>
 

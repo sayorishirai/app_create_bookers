@@ -16,7 +16,7 @@
     <%= f.text_area :body %>
   </div>
   <div class="actions row">
-    <input type="submit" name="commit" value="Update Book" class="btn btn-primary col-xs-12" data-disable-with="Update Book" />
+    <%= f.submit 'Create Book', :class=>"btn btn-primary col-xs-12" %>
   </div>
 </form>
     <%= link_to "Show", booker_path(@booker) %>

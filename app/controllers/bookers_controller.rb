@@ -5,19 +5,20 @@ class BookersController < ApplicationController
   end
 
   def show
-  	@booker = Booker.new
+  	@booker = Booker.find(params[:id])
     @bookers = Booker.all
   end
 
   def new
   	@booker = Booker.new
-    @books = Booker.all
+    @bookers = Booker.all
   end
 
   def create
   	booker = Booker.new(booker_params)
+    booker.user_id = current_user.id
   	booker.save
-  	redirect_to new_booker_path(booker)
+  	redirect_to booker_path(booker)
   end
 
   def edit
@@ -29,10 +30,11 @@ class BookersController < ApplicationController
   	booker.update(booker_params)
   	redirect_to booker_path(booker)
   end
+
   def destroy
-  	booker = Booker.find(params[:id])
-  	booker.destroy
-  	redirect_to booker_path
+  	@booker = Booker.find(params[:id])
+  	@booker.destroy
+  	redirect_to bookers_path
   end
 
   private

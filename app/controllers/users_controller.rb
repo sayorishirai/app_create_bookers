@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @users = User.all
     @booker = Booker.new
@@ -22,6 +23,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    if current_user == @user
+      # 何もしない
+    else
+      redirect_to user_path(@user)
+    end
   end
 
   def update
@@ -34,5 +40,10 @@ class UsersController < ApplicationController
   	def users_params
   		params.require(:user).permit(:name, :introduction, :image,)
   	end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
 
 end
