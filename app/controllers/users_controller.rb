@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+before_action :authenticate_user!
+
   def index
     @users = User.all
     @booker = Booker.new
@@ -7,6 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @users = User.new
     @booker = Booker.new
   end
 
@@ -18,7 +21,7 @@ class UsersController < ApplicationController
   def create
     user = User.new(users_params)
     user.save
-    redirect_to new_user_path(user.id)
+      redirect_to user_path(user.id)
   end
 
   def edit

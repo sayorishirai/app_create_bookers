@@ -1,12 +1,15 @@
 class BookersController < ApplicationController
+
+before_action :authenticate_user!
+
   def index
   	@bookers = Booker.all
   	@booker = Booker.new
   end
 
   def show
-  	@booker = Booker.find(params[:id])
-    @bookers = Booker.all
+  	@booker = Booker.new
+    @bookers = Booker.find(params[:id])
   end
 
   def new
@@ -15,14 +18,23 @@ class BookersController < ApplicationController
   end
 
   def create
-  	booker = Booker.new(booker_params)
-    booker.user_id = current_user.id
-  	booker.save
-  	redirect_to booker_path(booker)
+  	@booker = Booker.new(booker_params)
+    @bookers = Booker.all
+    @booker.user_id = current_user.id
+    if @booker.save
+  	  redirect_to booker_path(@booker)
+    else
+      render 'new'
+    end
   end
 
   def edit
   	@booker = Booker.find(params[:id])
+    if current_user.id == @booker.user_id
+      # 何もしない
+    else
+      redirect_to bookers_path
+    end
   end
 
   def update
@@ -33,8 +45,11 @@ class BookersController < ApplicationController
 
   def destroy
   	@booker = Booker.find(params[:id])
-  	@booker.destroy
-  	redirect_to bookers_path
+    if current_user.id == @booker.user_id
+  	 @booker.destroy
+    else
+    end
+    redirect_to bookers_path
   end
 
   private
