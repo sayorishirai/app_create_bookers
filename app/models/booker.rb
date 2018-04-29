@@ -5,5 +5,4 @@ class Booker < ApplicationRecord
 	validates :title, length: { in: 1..20 }
 	validates :body, length: { in: 1..200 }
 
-
 end

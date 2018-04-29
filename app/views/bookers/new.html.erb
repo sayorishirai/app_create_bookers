@@ -1,64 +1,59 @@
 <div class='body'>
-      <div class='container'>
-        <p id="notice"></p>
-      	<div class='row'>
-
-<div class='col-xs-3'>
-    <h2>User info</h2>
-    <table class='table'>
-      <tr>
-      <%= attachment_image_tag current_user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
-      </tr>
-      <tr>
-        <th>name</th>
-        <th><%= current_user.name %></th>
-      </tr>
-      <tr>
-        <th>introduction</th>
-        <th><%= current_user.introduction %></th>
-      </tr>
-    </table>
+  <div class='container'>
     <div class='row'>
-      <%= link_to "", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-    </div>
+      <div class='col-xs-3'>
+        <h2>User info</h2>
+        <table class='table'>
+          <tr>
+          <%= attachment_image_tag current_user, :image, :fill, 100, 100, fallback: 'no_image.jpg' %>
+          </tr>
+          <tr>
+            <th>name</th>
+            <th><%= current_user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= current_user.introduction %></th>
+          </tr>
+        </table>
+        <div class='row'>
+          <%= link_to "", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+        </div>
 
         <!-- ここから -->
-  <%= render 'bookers/list', bookers: @bookers %>
-  <!-- ここまで -->
+        <%= render 'bookers/list', bookers: @bookers %>
+        <!-- ここまで -->
 
-<% if @booker.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <ul>
-      <% @booker.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
-</div>
-
-  <div class='col-xs-9'>
-		<h2>Book detail</h2>
-		<table class='table'>
-    <% @bookers.each do |t| %>
-		  <tr>
-        <td><%= attachment_image_tag current_user, :image, :fill, 100, 100, fallback: 'no_image2.jpg' %><br>
-        </td>
-        <td><%= link_to t.title, booker_path(t) %></td>
-        <td><%= link_to t.body, booker_path(t) %></td>
-
-          <td>
-          <%= link_to 'Edit', edit_booker_path(t), class: "btn-sm btn-success" %>
-          </td>
-          <td>
-          <%= link_to "Destroy", booker_path(t), method: :delete, class: "btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
-          </td>
-        </tr>
+        <% if @booker.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <ul>
+              <% @booker.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-    </table>
+      </div><!-- .col-xs-3 -->
 
-  </div>
-</div>
-      </div>
+      <div class='col-xs-9'>
+    		<h2>Book detail</h2>
+    		<table class='table'>
+          <% @bookers.each do |t| %>
+    		  <tr>
+            <td><%= attachment_image_tag current_user, :image, :fill, 100, 100, fallback: 'no_image2.jpg' %><br>
+            </td>
+            <td><%= link_to t.title, booker_path(t) %></td>
+            <td><%= link_to t.body, booker_path(t) %></td>
+            <td>
+            <%= link_to 'Edit', edit_booker_path(t), class: "btn-sm btn-success" %>
+            </td>
+            <td>
+            <%= link_to "Destroy", booker_path(t), method: :delete, class: "btn-sm btn-danger", "data-confirm" => "本当に削除しますか？" %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </div><!-- .col-xs-9 -->
     </div>
+  </div>
+</div><!-- .body -->
