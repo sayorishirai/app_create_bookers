@@ -16,6 +16,63 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* common */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+}
+a {
+  text-decoration: none;
+}
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+header, nav, h2, footer {
+  font-family: Chalkduster, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}
+
+
+/* font */
+.fw-b{ font-weight: bold; }
+.fs-13{font-size: 13px;}
+
+/* margin */
+.mt10{margin-top: 10px;}
+.ml20{margin-left: 20px;}
+.ml50{margin-left: 50px;}
+.mb5{margin-bottom: 5px;}
+.mb10{margin-bottom: 10px;}
+.mb20{margin-bottom: 20px;}
+.mb30{margin-bottom: 30px;}
+.mb50{margin-bottom: 50px;}
+
+
+
+/* h1 */
+h1{
+	margin: 20px 0 0 20px;
+  font-size: 26px;
+}
+
+/* table */
+table{
+	margin: 10px 0 30px 20px;
+}
+table td{
+	padding: 4px;
+	font-size: 14px;
+}
+
+/* show */
+.show-table{
+	margin: 20px 0 0 30px;
+	font-size: 14px;
+}
+
 /* header */
 .container-fluid{
 	padding: 0 50px;
